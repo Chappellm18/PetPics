@@ -19,3 +19,15 @@ const addOwnerPipeline = [
 module.exports.getAll = () => {
     return collection.aggregate(addOwnerPipeline).toArray();
 }
+
+// get by id
+module.exports.getById = (id) => {
+    return collection.aggregate(addOwnerPipeline).toArray().then((images) => {
+        return images.find(image => image._id == id);
+    });
+}
+
+// post a new image to the database
+module.exports.create = (image) => {
+    return collection.insertOne(image);
+}
