@@ -1,21 +1,30 @@
-const API_ROOT = 'https://localhost:8080';
+const API_ROOT = 'https://localhost:3000';
 
 // function to get an image from the database
 export async function api(url, data = null, method = null) {
-    const options = {
-        method: method || (data ? 'POST' : 'GET'),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    console.log('body: JSON.stringify(data): ' + JSON.stringify(data));
+    try {
+        let response;
 
-    if (data) {
-        options.body = JSON.stringify(data);
-    }
+        if (data) {
+            response = await fetch(API_ROOT + url, {
+                method: method || 'POST', // *GET, POST, PUT, DELETE, etc.
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
 
-    const response = await fetch(`${API_ROOT}${url}`, options);
+            });
+        } else {
+            response = await fetch(API_ROOT + url);
+        }
 
-    if (response.status === 401) {
-        throw new Error('Unauthorized');
+        if (!response.ok) {
+            throw await response.json();
+        }
+        return await response.json();
+    } catch (err) {
+        console.log(err);
     }
 }

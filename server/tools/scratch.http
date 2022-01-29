@@ -2,14 +2,14 @@
 http://localhost:3000/images/
 
 ###
-http://localhost:3000/images/1
+http://localhost:3000/images/0
 
 ###
 POST http://localhost:3000/images
 Content-Type: application/json
-{
-    "src": "test image will go here",
-    "alt": "test image will go here",
-    "caption": "test image will go here",
-    "timeStamp": "a time will go here"
-}
+
+    {
+        "image": "image here",
+        "message": "message here",
+        "date": "date here"
+    }

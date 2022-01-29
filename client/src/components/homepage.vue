@@ -9,7 +9,7 @@
       <div class="card-content">
         <div class="content has-text-centered">
           <!-- Button -->
-          <b-button type="is-primary" @click="getImage()" expanded
+          <b-button type="is-primary" @click="getEntry()" expanded
             >Shuffle</b-button
           >
           <hr />
@@ -24,6 +24,7 @@
 
 <script>
 import titleslider from "./titleslider.vue";
+import { getImageById } from "../services/images.js";
 export default {
   data() {
     return {
@@ -36,8 +37,15 @@ export default {
     titleslider,
   },
   methods: {
-    getImage() {
-      this.image = `https://picsum.photos/200/300?random=${Math.random()}`;
+    async getEntry() {
+      // gets a entry from the database
+      const response = await getImageById(1);
+      console.log(response);
+      if (response) {
+        this.image = response.image;
+        this.message = response.message;
+        this.date = response.date;
+      }
     },
   },
 };
