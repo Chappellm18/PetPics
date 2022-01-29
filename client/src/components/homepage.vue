@@ -39,7 +39,7 @@ export default {
   methods: {
     async getEntry() {
       // gets a entry from the database
-      const response = await getImageById(1);
+      const response = await getImageById(0);
       console.log(response);
       if (response) {
         this.image = response.image;
