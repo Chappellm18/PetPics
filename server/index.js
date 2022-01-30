@@ -15,9 +15,12 @@ app
     .use('/', express.static(path.join(__dirname, '..', '/docs/')))
 
     .use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader('Access-Control-Allow-Posts', '*');
+        res.header('Access-Control-Allow-Origin', '*');
+
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+        res.header('Access-Control-Allow-Headers', 'Origin,Content-Type,X-Requested-With,Accept,Authorization');
+        next();
     })
 
     .use(express.json())
