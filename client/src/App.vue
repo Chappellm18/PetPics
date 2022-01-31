@@ -18,7 +18,7 @@ body,
 html {
   height: 100%;
   width: 100%;
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#eebfbf, #babef0);
 }
 .homepage {
   margin-top: 100px;
