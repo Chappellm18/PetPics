@@ -1,3 +1,4 @@
+const { Router } = require('express');
 const express = require('express');
 const model = require('../models/images');
 
@@ -23,3 +24,5 @@ app.post('/', (req, res, next) => {
         res.json(data);
     }).catch(next)
 });
+
+module.exports = app;
