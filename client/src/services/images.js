@@ -11,6 +11,11 @@ export async function getImageById(id) {
 }
 
 // post a new image to the database
-export async function createImage(image) {
-    return await api('/images', image, 'POST');
+export async function createImage(image, message) {
+    const data = {
+        "image": image,
+        "message": message,
+        "date": new Date()
+    }
+    return await api('/images', data, 'POST');
 }

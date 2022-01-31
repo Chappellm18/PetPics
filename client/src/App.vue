@@ -16,7 +16,7 @@ export default {
 <style>
 body,
 html {
-  height: 100%;
+  height: 1500px;
   width: 100%;
   background: linear-gradient(#eebfbf, #babef0);
 }

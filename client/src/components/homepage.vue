@@ -19,10 +19,14 @@
         </div>
       </div>
     </div>
+
+    <div v-if="{ posting }"><post style="margin-top: 25px" /></div>
+    <div v-else></div>
   </div>
 </template>
 
 <script>
+import post from "./post.vue";
 import titleslider from "./titleslider.vue";
 import { getImageById } from "../services/images.js";
 export default {
@@ -31,10 +35,12 @@ export default {
       image: null,
       message: "info about image",
       date: "date of image",
+      posting: true,
     };
   },
   components: {
     titleslider,
+    post,
   },
   methods: {
     async getEntry() {
