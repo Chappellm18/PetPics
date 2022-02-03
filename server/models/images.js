@@ -1,31 +1,24 @@
-const { client } = require('./databaseConnection.js');
+const { client, isConnected } = require('./databaseConnection.js');
 
 const collection = client.db(process.env.MONGO_DB).collection('SagieImages');
 module.exports.collection = collection;
 
-const addOwnerPipeline = [
-    {
-        $lookup: {
-            from: 'SagieImages',
-            localField: 'owner',
-            foreignField: '_id',
-            as: 'owner'
-        }
-    },
-    { $unwind: '$owner' },
-    { $project: { "owner.password": 0 } }
-];
-
 // get all images
 module.exports.getAll = async function getAll() {
-    return collection.aggregate(addOwnerPipeline).toArray();
+    if (isConnected) {
+        return collection.find({}).toArray();
+    } else {
+        console.log('not connected');
+    }
 }
 
 // get by id
-module.exports.getById = async function getById(id) {
-    return collection.aggregate(addOwnerPipeline).toArray().then((images) => {
-        return images.find(image => image._id == id);
-    });
+module.exports.getById = async function getById() {
+    if (isConnected) {
+        return collection.aggregate([{ $sample: { size: 1 } }]).toArray();
+    } else {
+        console.log('not connected');
+    }
 }
 
 // post a new image to the database

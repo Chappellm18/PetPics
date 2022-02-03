@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <titleslider class="slide" />
+    <titleSg class="slide" />
     <div class="card">
       <div class="card-image">
         <figure class="image"></figure>
@@ -20,38 +20,37 @@
       </div>
     </div>
 
-    <div v-if="{ posting }"><post style="margin-top: 25px" /></div>
+    <div v-if="posting"><post style="margin-top: 25px" /></div>
     <div v-else></div>
   </div>
 </template>
 
 <script>
 import post from "./post.vue";
-import titleslider from "./titleslider.vue";
+import titleSg from "./title.vue";
 import { getImageById } from "../services/images.js";
 export default {
   data() {
     return {
-      image: null,
-      message: "info about image",
-      date: "date of image",
-      posting: true,
+      image: "",
+      message: "",
+      date: "",
+      posting: false,
     };
   },
   components: {
-    titleslider,
+    titleSg,
     post,
   },
   methods: {
     async getEntry() {
       // gets a entry from the database
-      const response = await getImageById(0);
+      const response = await getImageById();
+      // sets the data
       console.log(response);
-      if (response) {
-        this.image = response.image;
-        this.message = response.message;
-        this.date = response.date;
-      }
+      this.image = response.image;
+      this.message = response.message;
+      this.date = response.date;
     },
   },
 };

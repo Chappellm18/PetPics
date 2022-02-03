@@ -1,15 +1,15 @@
 ### 
-http://localhost:3000/images/
+http://localhost:3000/images
 
 ###
-http://localhost:3000/images/0
+http://localhost:3000/images/1
 
 ###
 POST http://localhost:3000/images
 Content-Type: application/json
 
     {
-        "image": "image here",
+        "image": "image here 1",
         "message": "message here",
         "date": "date here"
     }

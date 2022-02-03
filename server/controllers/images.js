@@ -12,10 +12,8 @@ app.get('/', (req, res, next) => {
 });
 
 // get image by id
-app.get('/:id', (req, res, next) => {
-    model.getById(req.params.id).then(data => {
-        res.json(data);
-    }).catch(next)
+app.get('/1', (req, res, next) => {
+    model.getById().then(data => res.json(data)).catch(next)
 });
 
 // post a new image to the database

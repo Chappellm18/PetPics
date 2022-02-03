@@ -2,12 +2,12 @@ import { api } from "./index.js";
 
 // get all images
 export async function getAllImages() {
-    return await api('/images');
+    return await api('/images', null, 'GET');
 }
 
 // get image by id
-export async function getImageById(id) {
-    return await api(`/images/${id}`);
+export async function getImageById() {
+    return await api(`/images/1`, null, 'GET');
 }
 
 // post a new image to the database
