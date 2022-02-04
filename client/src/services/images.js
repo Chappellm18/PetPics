@@ -7,7 +7,7 @@ export async function getAllImages() {
 
 // get image by id
 export async function getImageById() {
-    return await api(`/images/1`, null, 'GET');
+    return await api('/images/1', null, 'GET');
 }
 
 // post a new image to the database

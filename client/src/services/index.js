@@ -2,7 +2,7 @@ const API_ROOT = 'https://localhost:3000';
 
 // function to get an image from the database
 export async function api(url, data = null, method = null) {
-    console.log('body: JSON.stringify(data): ' + JSON.stringify(data));
+    //console.log('body: JSON.stringify(data): ' + JSON.stringify(data));
     try {
         let response;
 

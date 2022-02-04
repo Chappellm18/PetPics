@@ -3,8 +3,13 @@
     <titleSg class="slide" />
     <div class="card">
       <div class="card-image">
-        <figure class="image"></figure>
-        <b-image v-bind:src="image" alt="A random image" ratio="5by4"></b-image>
+        <figure class="image">
+          <b-image
+            v-bind:src="image"
+            v-bind:alt="message"
+            ratio="5by4"
+          ></b-image>
+        </figure>
       </div>
       <div class="card-content">
         <div class="content has-text-centered">
@@ -19,7 +24,7 @@
         </div>
       </div>
     </div>
-
+    <!-- When adding new images to db set posting to true and form will show up -->
     <div v-if="posting"><post style="margin-top: 25px" /></div>
     <div v-else></div>
   </div>
@@ -32,9 +37,9 @@ import { getImageById } from "../services/images.js";
 export default {
   data() {
     return {
-      image: "",
-      message: "",
-      date: "",
+      image: "../assets/firstImg.jpg",
+      message: "Welcome to Sagie's fan club!",
+      date: new Date().toLocaleString(),
       posting: false,
     };
   },

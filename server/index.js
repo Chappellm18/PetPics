@@ -5,35 +5,38 @@
 
 const express = require('express');
 const path = require('path');
-
+require('dotenv').config();
 const app = express();
-const port = 3000;
+
+const httpPort = 3000;
+
 
 const imageController = require('./controllers/images.js');
-
-
 
 // uses
 app
     .use('/', express.static(path.join(__dirname, '..', '/docs/')))
 
+    /*
+      Access-Control-Allow-Origin: https://foo.example
+      Access-Control-Allow-Methods: POST, GET, OPTIONS
+      Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+    */
     .use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*');
 
         res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-        res.header('Access-Control-Allow-Headers', 'Origin,Content-Type,X-Requested-With,Accept,Authorization');
+        res.header('Access-Control-Allow-Headers', '*');
         next();
     })
 
     .use(express.json())
 
     .use('/images', imageController)
-
 // gets 
 app
     .get('*', (req, res) => res.sendFile(path.join(__dirname, '../docs/index.html')))
 
-app.listen(port, () => (
-    console.log(`Server listening on port ${port}`)
-))
+
+app.listen(process.env.PORT || httpPort, () => console.log(`Listening on port ${this.address().port}`));

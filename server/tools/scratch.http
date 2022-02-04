@@ -9,7 +9,7 @@ POST http://localhost:3000/images
 Content-Type: application/json
 
     {
-        "image": "image here 1",
+        "image": "image here 2",
         "message": "message here",
         "date": "date here"
     }
