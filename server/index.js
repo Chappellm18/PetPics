@@ -7,7 +7,7 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const app = express();
-
+const cors = require('cors');
 const httpPort = 3000;
 
 
@@ -15,28 +15,35 @@ const imageController = require('./controllers/images.js');
 
 // uses
 app
-    .use('/', express.static(path.join(__dirname, '..', '/docs/')))
+    .use(cors({
+        origin: "*",
+        methods: ["GET", "POST"],
+    })) * /
 
-    /*
-      Access-Control-Allow-Origin: https://foo.example
-      Access-Control-Allow-Methods: POST, GET, OPTIONS
-      Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
-    */
-    .use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', '*');
+        .use(express.json())
 
-        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        .use('/images', imageController)
 
-        res.header('Access-Control-Allow-Headers', '*');
-        next();
-    })
+        .use('/', express.static(path.join(__dirname, '..', '/docs/')))
 
-    .use(express.json())
+        /*
+          Access-Control-Allow-Origin: https://foo.example
+          Access-Control-Allow-Methods: POST, GET, OPTIONS
+          Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+         */
+        .use((req, res, next) => {
+            res.header('Access-Control-Allow-Origin', '*');
 
-    .use('/images', imageController)
+            res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+            res.header('Access-Control-Allow-Headers', '*');
+            next();
+        })
+
+
 // gets 
 app
     .get('*', (req, res) => res.sendFile(path.join(__dirname, '../docs/index.html')))
 
 
-app.listen(process.env.PORT || httpPort, () => console.log(`Listening on port ${this.address().port}`));
+app.listen(process.env.PORT || httpPort, () => console.log(`Listening on port ${httpPort}`));

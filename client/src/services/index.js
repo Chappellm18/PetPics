@@ -1,4 +1,4 @@
-const API_ROOT = 'https://localhost:3000';
+const API_ROOT = 'http://localhost:3000';
 
 // function to get an image from the database
 export async function api(url, data = null, method = null) {

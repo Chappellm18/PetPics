@@ -37,7 +37,7 @@ import { getImageById } from "../services/images.js";
 export default {
   data() {
     return {
-      image: "../assets/firstImg.jpg",
+      image: require("@/assets/firstImg.jpg"),
       message: "Welcome to Sagie's fan club!",
       date: new Date().toLocaleString(),
       posting: false,
@@ -53,9 +53,9 @@ export default {
       const response = await getImageById();
       // sets the data
       console.log(response);
-      this.image = response.image;
+      /*this.image = response.image;
       this.message = response.message;
-      this.date = response.date;
+      this.date = response.date;*/
     },
   },
 };

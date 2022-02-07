@@ -13,7 +13,7 @@ module.exports.getAll = async function getAll() {
 }
 
 // get by id
-module.exports.getById = async function getById() {
+module.exports.getOne = async function getOne() {
     if (isConnected) {
         return collection.aggregate([{ $sample: { size: 1 } }]).toArray();
     } else {

@@ -8,19 +8,19 @@ const app = express.Router();
 app.get('/', (req, res, next) => {
     model.getAll().then(data => {
         res.json(data);
-    }).catch(next)
+    }).catch(next());
 });
 
 // get image by id
 app.get('/1', (req, res, next) => {
-    model.getById().then(data => res.json(data)).catch(next)
+    model.getOne().then(data => res.json(data)).catch(next())
 });
 
 // post a new image to the database
 app.post('/', (req, res, next) => {
     model.create(req.body).then(data => {
         res.json(data);
-    }).catch(next)
+    }).catch(next());
 });
 
 module.exports = app;
