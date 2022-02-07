@@ -15,30 +15,30 @@ const imageController = require('./controllers/images.js');
 
 // uses
 app
-    .use(cors({
+    /*.use(cors({
         origin: "*",
         methods: ["GET", "POST"],
-    })) * /
+    }))*/
 
-        .use(express.json())
+    .use(express.json())
 
-        .use('/images', imageController)
+    .use('/images', imageController)
 
-        .use('/', express.static(path.join(__dirname, '..', '/docs/')))
+    .use('/', express.static(path.join(__dirname, '..', '/docs/')))
 
-        /*
-          Access-Control-Allow-Origin: https://foo.example
-          Access-Control-Allow-Methods: POST, GET, OPTIONS
-          Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
-         */
-        .use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', '*');
+    /*
+      Access-Control-Allow-Origin: https://foo.example
+      Access-Control-Allow-Methods: POST, GET, OPTIONS
+      Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+     */
+    .use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
 
-            res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-            res.header('Access-Control-Allow-Headers', '*');
-            next();
-        })
+        res.header('Access-Control-Allow-Headers', '*');
+        next();
+    })
 
 
 // gets 
