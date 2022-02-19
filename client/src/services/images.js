@@ -15,7 +15,7 @@ export async function createImage(image, message) {
     const data = {
         "image": image,
         "message": message,
-        "date": new Date()
+        "date": new Date().toLocaleString()
     }
     return await api('/images', data, 'POST');
 }
