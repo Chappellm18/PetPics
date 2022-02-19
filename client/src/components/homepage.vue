@@ -38,7 +38,8 @@ export default {
   data() {
     return {
       image: "https://i.lensdump.com/i/r7mv5o.jpg?open=true",
-      message: "Welcome to Sagie's fan club!",
+      message:
+        "Welcome to Sagie's fan club! Heroku hosting doesnt properly call API - will fix soon",
       date: new Date().toLocaleString(),
       posting: false,
     };
